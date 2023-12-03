@@ -7,7 +7,7 @@ namespace AltV.Atlas.Shared.Converters;
 
 /// <summary>
 /// Converts JSON to a given type and vice versa
-/// Thanks zziger <3
+/// Thanks zziger :)
 /// </summary>
 /// <typeparam name="T">The type to convert</typeparam>
 public class JsonTypeConverter<T> : JsonConverter<T>
@@ -68,8 +68,6 @@ public class JsonTypeConverter<T> : JsonConverter<T>
     public override void Write( Utf8JsonWriter writer, T value, JsonSerializerOptions options )
     {
         var str = JsonSerializer.Serialize( (object)value, options );
-        
-        Console.WriteLine( $"str: {str} " );
         
         if( str.Length > 2 )
             writer.WriteRawValue( str[ ..^1 ], true );
