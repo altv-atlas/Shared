@@ -9,4 +9,6 @@ public class AppSettings
     /// Traffic settings which are used in the Peds.Traffic module
     /// </summary>
     public TrafficSettings TrafficSettings { get; set; }
+
+    public DatabaseSettings? Database { get; set; }
 }
