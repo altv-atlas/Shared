@@ -42,4 +42,15 @@ public static class EnumExtensions
     {
         return source.OrderBy( x => Guid.NewGuid( ) );
     }
+
+    /// <summary>
+    /// Lets you iterate a collection with an index
+    /// </summary>
+    /// <param name="source">The collection</param>
+    /// <typeparam name="T">Type of the item</typeparam>
+    /// <returns>Returns indexed collection</returns>
+    public static IEnumerable<(T item, int index)> WithIndex<T>( this IEnumerable<T> source )
+    {
+        return source.Select( ( item, index ) => ( item, index ) );
+    }
 }
