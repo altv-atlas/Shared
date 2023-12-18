@@ -53,4 +53,15 @@ public static class EnumExtensions
     {
         return source.Select( ( item, index ) => ( item, index ) );
     }
+
+    /// <summary>
+    /// Checks if the collection is null or empty
+    /// </summary>
+    /// <param name="source">The collection to check</param>
+    /// <typeparam name="T">The type of the collection</typeparam>
+    /// <returns>If the collection is null or empty</returns>
+    public static bool IsNullOrEmpty<T>( this IEnumerable<T>? source )
+    {
+        return source is null || !source.Any( );
+    }
 }
