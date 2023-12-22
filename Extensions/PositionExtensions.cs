@@ -9,11 +9,11 @@ public static class PositionExtensions
     /// <summary>
     /// Adds a speed value to the given position
     /// </summary>
-    /// <param name="position"></param>
-    /// <param name="position2"></param>
-    /// <param name="speed"></param>
-    /// <param name="lr"></param>
-    /// <returns></returns>
+    /// <param name="position">The given position</param>
+    /// <param name="position2">The position to add with speed</param>
+    /// <param name="speed">The speed value to add</param>
+    /// <param name="lr">Is it left/right</param>
+    /// <returns>The new position with the added speed</returns>
     public static Position AddSpeedToPosition( this Position position, Position position2, float speed, bool lr = false )
     {
         return new Position
@@ -25,10 +25,10 @@ public static class PositionExtensions
     }
 
     /// <summary>
-    /// 
+    /// Gets the cameras right position
     /// </summary>
-    /// <param name="camRot"></param>
-    /// <returns></returns>
+    /// <param name="camRot">The cams rotation value</param>
+    /// <returns>Cameras right position</returns>
     public static Position CamPositionRight( this Position camRot )
     {
         return new Position
@@ -43,8 +43,8 @@ public static class PositionExtensions
     /// <summary>
     /// Gets the cameras forward position
     /// </summary>
-    /// <param name="camRot"></param>
-    /// <returns></returns>
+    /// <param name="camRot">The cams rotation value</param>
+    /// <returns>Cameras forward position</returns>
     public static Position CamPositionForward( this Position camRot )
     {
         return new Position
