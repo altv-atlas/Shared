@@ -10,5 +10,8 @@ public class AppSettings
     /// </summary>
     public TrafficSettings TrafficSettings { get; set; }
 
+    /// <summary>
+    /// Database settings which are used in the Database module
+    /// </summary>
     public DatabaseSettings? Database { get; set; }
 }
