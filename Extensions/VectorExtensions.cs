@@ -69,4 +69,20 @@ public static class VectorExtensions
             Z = ( float ) Math.Sin( camVector3.X * ( Math.PI / 180 ) )
         };
     }
+
+    /// <summary>
+    /// Converts the rotation angles into a vector
+    /// </summary>
+    /// <param name="rotation">The rotation in angles to convert</param>
+    /// <returns>The vector</returns>
+    public static Vector3 RotAnglesToVector( this Vector3 rotation )
+    {
+        var z = rotation.Z.DegreesToRadians( );
+        var x = rotation.X.DegreesToRadians( );
+        var num = Math.Abs( Math.Cos( x ) );
+
+        return new Vector3( -( float ) ( Math.Sin( z ) * num ), ( float ) ( Math.Cos( z ) * num ), ( float ) Math.Sin( x ) );
+    }
+
+
 }

@@ -14,4 +14,12 @@ public static class FloatExtensions
     {
         return ( degrees / 360 ) * MathF.PI;
     }
+    
+    /// <summary>
+    /// Converts degrees to radians
+    /// </summary>
+    /// <param name="degrees">the float value in degrees</param>
+    /// <returns></returns>
+    public static float DegreesToRadians( this float degrees ) => ( float ) ( degrees * Math.PI / 180 );
+
 }
