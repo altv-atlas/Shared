@@ -20,7 +20,7 @@ public static class VectorExtensions
             degrees.Z.ToRadian( )
         );
     }
-    
+
     /// <summary>
     /// Adds a speed value to the given vector3
     /// </summary>
@@ -48,9 +48,9 @@ public static class VectorExtensions
     {
         return new Vector3
         {
-            X = ( float ) Math.Cos( camVector3.Z * ( Math.PI / 180 ) ),
-            Y = ( float ) Math.Sin( camVector3.Z * ( Math.PI / 180 ) ),
-            Z = ( float ) Math.Sin( camVector3.X * ( Math.PI / 180 ) )
+            X = MathF.Cos( camVector3.Z * ( MathF.PI / 180 ) ),
+            Y = MathF.Sin( camVector3.Z * ( MathF.PI / 180 ) ),
+            Z = MathF.Sin( camVector3.X * ( MathF.PI / 180 ) )
         };
     }
 
@@ -64,9 +64,9 @@ public static class VectorExtensions
     {
         return new Vector3
         {
-            X = ( float ) Math.Cos( camVector3.Z * ( Math.PI / 180 ) + Math.PI / 2 ),
-            Y = ( float ) Math.Sin( camVector3.Z * ( Math.PI / 180 ) + Math.PI / 2 ),
-            Z = ( float ) Math.Sin( camVector3.X * ( Math.PI / 180 ) )
+            X = MathF.Cos( camVector3.Z * ( MathF.PI / 180 ) + MathF.PI / 2 ),
+            Y = MathF.Sin( camVector3.Z * ( MathF.PI / 180 ) + MathF.PI / 2 ),
+            Z = MathF.Sin( camVector3.X * ( MathF.PI / 180 ) )
         };
     }
 
@@ -79,9 +79,9 @@ public static class VectorExtensions
     {
         var z = rotation.Z.DegreesToRadians( );
         var x = rotation.X.DegreesToRadians( );
-        var num = Math.Abs( Math.Cos( x ) );
+        var num = MathF.Abs( MathF.Cos( x ) );
 
-        return new Vector3( -( float ) ( Math.Sin( z ) * num ), ( float ) ( Math.Cos( z ) * num ), ( float ) Math.Sin( x ) );
+        return new Vector3( -( MathF.Sin( z ) * num ), MathF.Cos( z ) * num, MathF.Sin( x ) );
     }
 
 
