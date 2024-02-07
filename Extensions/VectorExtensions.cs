@@ -20,7 +20,7 @@ public static class VectorExtensions
             degrees.Z.ToRadian( )
         );
     }
-
+  
     /// <summary>
     /// Adds a speed value to the given vector3
     /// </summary>
@@ -83,6 +83,4 @@ public static class VectorExtensions
 
         return new Vector3( -( MathF.Sin( z ) * num ), MathF.Cos( z ) * num, MathF.Sin( x ) );
     }
-
-
 }
