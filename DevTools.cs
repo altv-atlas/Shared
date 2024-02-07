@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using AltV.Net.Client;
 namespace AltV.Atlas.Shared;
 
 /// <summary>
@@ -20,11 +19,11 @@ public static class DevTools
 
         foreach( var property in obj.GetType( ).GetProperties( ) )
         {
-            Alt.Log( Convert.ToString( property.Name + " : " + property.GetValue( obj ) ) );
+            Console.WriteLine( Convert.ToString( property.Name + " : " + property.GetValue( obj ) ) );
         }
 #endif
     }
-    
+
     /// <summary>
     /// Logs every field with name and value for the given object
     /// </summary>
@@ -38,7 +37,7 @@ public static class DevTools
 
         foreach( var property in obj.GetType( ).GetFields( ) )
         {
-            Alt.Log( Convert.ToString( property.Name + " : " + property.GetValue( obj ) ) );
+            Console.WriteLine( Convert.ToString( property.Name + " : " + property.GetValue( obj ) ) );
         }
 #endif
     }
