@@ -1,5 +1,6 @@
 ﻿using System.Text.Json;
 using System.Text.Json.Serialization;
+using System.Text.Json.Serialization.Metadata;
 
 namespace AltV.Atlas.Shared.Converters;
 
@@ -27,13 +28,36 @@ public static class JsonOptions
             IncludeFields = true,
             PropertyNameCaseInsensitive = true,
             DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
-            NumberHandling = JsonNumberHandling.AllowReadingFromString
+            NumberHandling = JsonNumberHandling.AllowReadingFromString,
+            UnmappedMemberHandling = JsonUnmappedMemberHandling.Skip
         };
 
         foreach (var converter in DefaultConverters)
             options.Converters.Add(converter);
         foreach (var converter in converters)
             options.Converters.Add(converter);
+
+        return options;
+    }
+    /// <summary>
+    /// Add a type resolver to the current json options
+    /// </summary>
+    /// <param name="resolver">The resolver to add</param>
+    /// <returns>JsonSerializerOptions with default settings and included resolver</returns>
+    public static JsonSerializerOptions WithTypeResolver(IJsonTypeInfoResolver resolver)
+    {
+        var options = new JsonSerializerOptions
+        {
+            IncludeFields = true,
+            PropertyNameCaseInsensitive = true,
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+            NumberHandling = JsonNumberHandling.AllowReadingFromString
+        };
+
+        foreach (var converter in DefaultConverters)
+            options.Converters.Add(converter);
+        
+        options.TypeInfoResolver = resolver;
 
         return options;
     }

@@ -15,18 +15,6 @@ public class JsonTypeConverter<T> : JsonConverter<T>
     private readonly IEnumerable<Type> _types;
 
     /// <summary>
-    /// Creates a new instance of this class
-    /// </summary>
-    public JsonTypeConverter()
-    {
-        var type = typeof(T);
-        _types = AppDomain.CurrentDomain.GetAssemblies()
-            .SelectMany(s => s.GetTypes())
-            .Where(p => type.IsAssignableFrom(p) && p is { IsClass: true, IsAbstract: false })
-            .ToList();
-    }
-    
-    /// <summary>
     /// Reads JSON and converts it to the target object
     /// </summary>
     /// <param name="reader"></param>
@@ -40,7 +28,7 @@ public class JsonTypeConverter<T> : JsonConverter<T>
         {
             throw new JsonException( "Invalid discriminator token type" );
         }
-
+        
         using var jsonDocument = JsonDocument.ParseValue(ref reader);
         if (!jsonDocument.RootElement.TryGetProperty("__t", out var propertyName))
         {
@@ -54,9 +42,33 @@ public class JsonTypeConverter<T> : JsonConverter<T>
         }
         
         var jsonObject = jsonDocument.RootElement.GetRawText( );
-        var result = ( T ) JsonSerializer.Deserialize( jsonObject, type, options )!;
+        var result = JsonSerializer.Deserialize<T>( jsonObject, options )!;
 
         return result;
+    }
+
+    /// <summary>
+    /// Creates a new instance of this class
+    /// </summary>
+    public JsonTypeConverter()
+    {
+        var type = typeof(T);
+        var assemblies = AppDomain.CurrentDomain.GetAssemblies();
+
+        try
+        {
+            _types = assemblies.SelectMany(assembly => assembly.GetTypes());
+        }
+        catch (ReflectionTypeLoadException e)
+        {
+            _types = assemblies.SelectMany(assembly => 
+                assembly.DefinedTypes
+                    .Where( x => x != null )
+                );
+        }
+        
+        _types = _types.Where(p => type.IsAssignableFrom(p) && p is { IsClass: true, IsAbstract: false })
+            .ToList();
     }
 
     /// <summary>
